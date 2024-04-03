@@ -26,17 +26,20 @@ export const categories = [
   {
     id: 1,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
-    title: "SHIRT STYLE!"
+    title: "SHIRT STYLE!",
+    cat: "women"
   },
   {
     id: 2,
     img: "https://user-images.githubusercontent.com/75200810/236661206-abad8969-8630-4a36-bf13-70d8f83ef64f.png",
-    title: "LOUNGEWEAR LOVE"
+    title: "LOUNGEWEAR LOVE",
+    cat: "man"
   },
   {
     id: 3,
     img: "https://user-images.githubusercontent.com/75200810/236661242-1108a421-6a14-48df-93c4-80708322cf70.png",
-    title: "COOL CASUAL"
+    title: "COOL CASUAL",
+    cat: "kids"
   }
 ]
 
