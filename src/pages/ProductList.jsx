@@ -61,10 +61,10 @@ const ProductList = () => {
       <Container>
         <Navbar/>
         <Announcement/>
-        <Title>Dresses</Title>
+        <Title>{cat}</Title>
         <FilterContainer>
             <Filter><FilterText>Filter Products:</FilterText>
-              <Select name="colore" onChange={handleFilter}>
+              <Select name="color" onChange={handleFilter}>
                 <Option disabled >color</Option>
                 <Option>White</Option>
                 <Option>Black</Option>

@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
@@ -6,6 +6,8 @@ import Footer from '../components/Footer'
 import Announcement from '../components/Announcement'
 import { Add, Remove } from '@material-ui/icons'
 import { mobile } from '../responsive';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios'
 
 const Container = styled.div``
 
@@ -115,6 +117,21 @@ const Botton = styled.button`
 
 
 const Product = () => {
+    const location = useLocation();
+    const id = location.pathname.split("/")[2];
+    const [product, setProduct] = useState({});
+
+    useEffect(()=>{
+        const fetchProduct = async () =>{
+            try{
+                const res = await axios.get("/products/" + id);
+                setProduct(res.data);
+            }catch(err){
+                console.log(err);
+            }
+        }
+        fetchProduct();
+    },[id])
   return (
     <Container>
       <Navbar/>
@@ -124,7 +141,7 @@ const Product = () => {
             <Image src="https://user-images.githubusercontent.com/75200810/235105280-90f8739c-6e13-4c46-97ec-0f552f3b225a.png" />
         </ImgContainer>
         <InfoContainer>
-            <Title>Denime Jumpsuit</Title>
+            <Title>{product.title}</Title>
             <Decs>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quas, minus at! Voluptate perferendis nesciunt vitae inventore ipsam non, corrupti quam possimus earum impedit! Repudiandae in ea consequatur assumenda autem unde.</Decs>
             <Price>200$</Price>
             <FilterConatainer>
