@@ -4,8 +4,10 @@ import Product from "./pages/Product";
 import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
+import Success from "./pages/Success";
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
 // import { useSelector } from "react-redux";
 
 const App = () => {
@@ -20,6 +22,7 @@ const App = () => {
         <Route path="/products/:category" element={<ProductList/>} />
         <Route path="/product/:id" element={<Product/>} />
         <Route path="/cart" element={<Cart/>} />
+        <Route path="/success" element={<Success/>} />  
         {/* Add more routes as needed */}
       </Routes>
     </Router>

@@ -45,7 +45,7 @@ const ProductList = () => {
   const cat = location.pathname.split("/")[2];
   console.log(cat);
   const [filters, setFilters] = useState({});
-  const [sort, setSort] = useState({});
+  const [sort, setSort] = useState("newest");
 
 
   const handleFilter = (e) =>{
@@ -57,7 +57,6 @@ const ProductList = () => {
   }
 
   return (
-    <div>
       <Container>
         <Navbar/>
         <Announcement/>
@@ -94,8 +93,7 @@ const ProductList = () => {
         <Newsletter/>
         <Footer/>
       </Container>
-    </div>
-  )
-}
+  );
+};
 
-export default ProductList
+export default ProductList;
