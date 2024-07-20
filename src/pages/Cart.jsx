@@ -1,4 +1,4 @@
-import { Add, Remove } from "@material-ui/icons";
+// import { Add, Remove } from "@material-ui/icons";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
@@ -9,8 +9,10 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
 import { useNavigate } from 'react-router-dom';
+import { useDispatch } from "react-redux";
+import { emptyCart } from "../redux/cartRedux";
 
-const KEY = process.env.REACT_APP_STRIPE;
+// const KEY = process.env.REACT_APP_STRIPE;
 
 const Container = styled.div``;
 
@@ -163,6 +165,7 @@ const Cart = () => {
   const cart = useSelector((state) => state.cart);
   const [stripeToken, setStripeToken] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const onToken = (token) => {
     setStripeToken(token);
@@ -173,15 +176,24 @@ const Cart = () => {
       try {
         const res = await userRequest.post("/checkout/payment", {
           tokenId: stripeToken.id,
-          amount: 500,
+          amount: cart.total * 100, // Ensure you are using the correct amount
         });
         navigate("/success", {
-          stripeData: res.data,
-          products: cart, });
-      } catch {}
+          state: { // Use `state` to pass data to the `navigate` function
+            stripeData: res.data,
+            cart: cart,
+          },
+        });
+        dispatch(emptyCart());
+      } catch (error) {
+        console.error("Payment failed:", error);
+      }
     };
-    stripeToken && makeRequest();
-  }, [stripeToken, cart.total, cart, navigate]);
+    if (stripeToken) {
+      makeRequest();
+    }
+  }, [stripeToken, cart.total, navigate, cart]);
+
   return (
     <Container>
       <Navbar />
@@ -191,7 +203,7 @@ const Cart = () => {
         <Top>
           <TopButton>CONTINUE SHOPPING</TopButton>
           <TopTexts>
-            <TopText>Shopping Bag(2)</TopText>
+            <TopText>Shopping Bag({cart.products.length})</TopText>
             <TopText>Your Wishlist (0)</TopText>
           </TopTexts>
           <TopButton type="filled">CHECKOUT NOW</TopButton>
@@ -199,7 +211,7 @@ const Cart = () => {
         <Bottom>
           <Info>
             {cart.products.map((product) => (
-              <Product>
+              <Product key={product._id}>
                 <ProductDetail>
                   <Image src={product.img} />
                   <Details>
@@ -217,9 +229,7 @@ const Cart = () => {
                 </ProductDetail>
                 <PriceDetail>
                   <ProductAmountContainer>
-                    <Add />
                     <ProductAmount>{product.quantity}</ProductAmount>
-                    <Remove />
                   </ProductAmountContainer>
                   <ProductPrice>
                     $ {product.price * product.quantity}
@@ -248,14 +258,14 @@ const Cart = () => {
               <SummaryItemPrice>$ {cart.total}</SummaryItemPrice>
             </SummaryItem>
             <StripeCheckout
-              name="Lama Shop"
-              image="https://avatars.githubusercontent.com/u/1486366?v=4"
+              name="RIRA Shop"
+              image=""
               billingAddress
               shippingAddress
               description={`Your total is $${cart.total}`}
               amount={cart.total * 100}
               token={onToken}
-              stripeKey={KEY}
+              stripeKey={process.env.REACT_APP_STRIPE} // Make sure you have this set up in your environment variables
             >
               <Button>CHECKOUT NOW</Button>
             </StripeCheckout>

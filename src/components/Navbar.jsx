@@ -7,6 +7,8 @@ import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { mobile } from '../responsive';
 import { useSelector } from 'react-redux';
 import { Link } from "react-router-dom";
+import { logOut } from '../redux/userRedux';
+import { useDispatch } from 'react-redux';
 
 const Container = styled.div`
 height: 60px;
@@ -69,7 +71,14 @@ const MenuItem = styled.div`
 `
 
 const Navbar = () => {
-    const quantity = useSelector(state=>state.cart.quantity);
+    const quantity = useSelector(state=>state.cart?.quantity);
+
+    const dispatch = useDispatch();
+    
+    const handleClick = (e) => {
+        e.preventDefault();
+        dispatch(logOut());
+    }
   return (
     <Container>
         <Wrapper>
@@ -82,8 +91,15 @@ const Navbar = () => {
             </Left>
             <Center><Logo>rira.</Logo></Center>
             <Right>
-                <MenuItem>REGISTER</MenuItem>
-                <MenuItem>SIGN IN</MenuItem>
+                {window.location.pathname === '/' && 
+                    <MenuItem onClick={handleClick}>SIGN OUT</MenuItem>
+                }
+                {
+                    window.location.pathname !== '/' &&
+                    <Link to="/">
+                        <MenuItem>Home</MenuItem> 
+                    </Link>
+                }
                 <Link to="/cart">
                 <MenuItem>
                     <Badge badgeContent={quantity} color="primery">
