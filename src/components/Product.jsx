@@ -68,7 +68,7 @@ const Product = ({item}) => {
   return (
     <Container>
       <Circle/>
-      <Image src={item.img}/>
+      <Image src={item.img} alt='img'/>
       <Info>
         <Icon>
           <ShoppingCartOutlinedIcon/>

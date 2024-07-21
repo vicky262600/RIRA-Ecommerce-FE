@@ -150,7 +150,7 @@ const Product = () => {
       <Announcement/>
       <Wrapper>
         <ImgContainer>
-            <Image src={product.img} />
+            <Image src={product.img} alt='img' />
         </ImgContainer>
         <InfoContainer>
             <Title>{product.title}</Title>
