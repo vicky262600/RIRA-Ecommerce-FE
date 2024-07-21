@@ -83,7 +83,7 @@ const Register = () => {
         email: email, 
         password: password
       }
-      const res = await axios.post("http://localhost:5000/api/auth/register", user);
+      const res = await axios.post("https://rira-ecommerce-api.vercel.app/api/auth/register", user);
       console.log(res.data);
     }catch(err){
       console.log(err);
