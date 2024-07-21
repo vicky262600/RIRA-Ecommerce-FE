@@ -4,7 +4,9 @@ import Navbar from '../components/Navbar'
 import Newsletter from '../components/Newsletter'
 import Footer from '../components/Footer'
 import Announcement from '../components/Announcement'
-import { Add, Remove } from '@material-ui/icons'
+import AddRoundedIcon from '@mui/icons-material/AddRounded';
+import RemoveRoundedIcon from '@mui/icons-material/RemoveRounded';
+// import { Add, Remove } from '@material-ui/icons'
 import { mobile } from '../responsive';
 import { useLocation } from 'react-router-dom';
 import { publicRequest } from "../requestMethods";
@@ -133,7 +135,9 @@ const Product = () => {
           try {
             const res = await publicRequest.get("/products/find/" + id);
             setProduct(res.data);
-          } catch {}
+          } catch(err) {
+            console.log(err);
+          }
         };
         getProduct();
       }, [id]);
@@ -174,9 +178,9 @@ const Product = () => {
             </FilterConatainer>
             <AddContainer>
                 <AmountContainer>
-                    <Remove onClick={() => setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1))} />
+                    <RemoveRoundedIcon onClick={() => setQuantity(prevQuantity => (prevQuantity > 1 ? prevQuantity - 1 : 1))} />
                     <Amount>{quantity}</Amount>
-                    <Add onClick={()=> setQuantity(quantity+1)}/>
+                    <AddRoundedIcon onClick={()=> setQuantity(quantity+1)}/>
                 </AmountContainer>
                 <Botton onClick={handleClick}>ADD TO CART</Botton>
             </AddContainer>

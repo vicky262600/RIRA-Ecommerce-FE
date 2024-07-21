@@ -2,7 +2,8 @@ import React from 'react'
 import styled from 'styled-components'
 import SearchIcon from '@mui/icons-material/Search'
 //import Badge from '@mui/icons-material/Badge'
-import Looks4RoundedIcon from '@mui/icons-material/Looks4Rounded';
+import { Badge } from '@mui/material'
+// import Looks4RoundedIcon from '@mui/icons-material/Looks4Rounded';
 import ShoppingCartOutlinedIcon from '@mui/icons-material/ShoppingCartOutlined';
 import { mobile } from '../responsive';
 import { useSelector } from 'react-redux';
@@ -102,9 +103,9 @@ const Navbar = () => {
                 }
                 <Link to="/cart">
                 <MenuItem>
-                    <Looks4RoundedIcon badgeContent={quantity} color="primery">
+                    <Badge badgeContent={quantity} color="primery">
                         <ShoppingCartOutlinedIcon/>
-                    </Looks4RoundedIcon>
+                    </Badge>
                 </MenuItem>
                 </Link>
             </Right>
