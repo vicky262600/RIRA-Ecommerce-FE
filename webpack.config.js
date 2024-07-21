@@ -1,34 +1,4 @@
 const webpack = require('webpack');
-
-module.exports = {
-  entry: './src/index.js',
-  output: {
-    path: __dirname + '/dist',
-    filename: 'bundle.js'
-  },
-  module: {
-    rules: [
-      {
-        test: /\.js$/,
-        exclude: /node_modules/,
-        use: {
-          loader: 'babel-loader'
-        }
-      }
-    ]
-  },
-  plugins: [
-    new webpack.DefinePlugin({
-      'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
-    })
-  ],
-  devServer: {
-    contentBase: './dist',
-  }
-};
-
-
-const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
@@ -45,12 +15,20 @@ module.exports = {
         use: {
           loader: 'babel-loader'
         }
+      },
+      {
+        test: /\.css$/, // If you are using CSS files
+        use: ['style-loader', 'css-loader']
+      },
+      {
+        test: /\.(png|svg|jpg|jpeg|gif)$/, // For handling images
+        use: ['file-loader']
       }
     ]
   },
   plugins: [
     new webpack.ProvidePlugin({
-      process: 'process/browser',
+      process: 'process/browser'
     }),
     new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV || 'development')
@@ -58,11 +36,13 @@ module.exports = {
   ],
   resolve: {
     fallback: {
-      "process": require.resolve("process/browser")
+      process: require.resolve('process/browser')
     }
   },
   devServer: {
-    contentBase: path.join(__dirname, 'dist'),
-  }
+    static: path.join(__dirname, 'dist'),
+    compress: true,
+    port: 9000
+  },
+  mode: process.env.NODE_ENV || 'development'
 };
-
