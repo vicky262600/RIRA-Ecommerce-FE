@@ -7,12 +7,15 @@ import axios from 'axios';
 const Container = styled.div`
   width: 100vw;
   height: 100vh;
-  background-color: gray;
+  background-image: url('https://peach-advisory-zebra-318.mypinata.cloud/ipfs/QmXfaZuNtw87dbQ96t64j6puFcq8vM1UQZv1MLAQe4DFWR');
+  background-size: cover; /* Ensures the image covers the entire area */
+  background-position: center; /* Centers the image */
+  background-repeat: no-repeat; /* Prevents the image from repeating */
   display: flex;
   align-items: center;
   justify-content: center;
 `
-    
+
 const Wrapper = styled.div`
   width: 40%;
   padding: 20px;
@@ -20,12 +23,12 @@ const Wrapper = styled.div`
   background-color: white;
   ${mobile({ width: "75%" })};
 `
-  
+
 const Title = styled.h1`
   font-size: 24px;
   font-weight: 300;
 `
-  
+
 const Form = styled.form`
   display: flex;
   flex-wrap: wrap;
@@ -70,45 +73,45 @@ const Register = () => {
   const [email, setEmail] = useState("");
   const [password, setPasssword] = useState("");
   const [passwordAgain, setPasswordAgain] = useState("");
-  
-  const handleClick= async (e)=>{
+
+  const handleClick = async (e) => {
     e.preventDefault();
-    if(password !== passwordAgain){
+    if (password !== passwordAgain) {
       console.log("passwords don't match");
       alert("passwords don't match!");
     }
-    try{
+    try {
       const user = {
         username: username,
-        email: email, 
+        email: email,
         password: password
       }
       const res = await axios.post("https://rira-ecommerce-api.vercel.app/api/auth/register", user);
       console.log(res.data);
-    }catch(err){
+    } catch (err) {
       console.log(err);
     }
   }
-  
+
   return (
     <Container>
       <Wrapper>
         <Title>CREAT AN ACCOUNT</Title>
         <Form onSubmit={handleClick}>
-            <Input placeholder="user name" onChange={(e)=> setUsername(e.target.value)}/>
-            <Input placeholder="email" onChange={(e)=> setEmail(e.target.value)}/>
-            <Input placeholder="password" onChange={(e)=> setPasssword(e.target.value)}/>
-            <Input placeholder="conform password" onChange={(e)=> setPasswordAgain(e.target.value)}/>
-              <Agreement>
-              By creating an account, I consent to the processing of my personal data in accordance with it <b>PRIVACY POLICY</b>
-              </Agreement>
-            <ButtonBox>
-              <Button type='submit'>Create</Button>
-              <Link to="/login">
-                <Signin>Sign in</Signin>
-              </Link>
-            </ButtonBox>
-            {/* <Signin>Sign in</Signin> */}
+          <Input placeholder="user name" onChange={(e) => setUsername(e.target.value)} />
+          <Input placeholder="email" onChange={(e) => setEmail(e.target.value)} />
+          <Input placeholder="password" onChange={(e) => setPasssword(e.target.value)} />
+          <Input placeholder="conform password" onChange={(e) => setPasswordAgain(e.target.value)} />
+          <Agreement>
+            By creating an account, I consent to the processing of my personal data in accordance with it <b>PRIVACY POLICY</b>
+          </Agreement>
+          <ButtonBox>
+            <Button type='submit'>Create</Button>
+            <Link to="/login">
+              <Signin>Sign in</Signin>
+            </Link>
+          </ButtonBox>
+          {/* <Signin>Sign in</Signin> */}
         </Form>
       </Wrapper>
     </Container>
