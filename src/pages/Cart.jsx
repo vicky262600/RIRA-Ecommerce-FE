@@ -8,7 +8,7 @@ import { mobile } from "../responsive";
 import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethods";
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { emptyCart } from "../redux/cartRedux";
 
@@ -179,7 +179,8 @@ const Cart = () => {
           amount: cart.total * 100, // Ensure you are using the correct amount
         });
         navigate("/success", {
-          state: { // Use `state` to pass data to the `navigate` function
+          state: {
+            // Use `state` to pass data to the `navigate` function
             stripeData: res.data,
             cart: cart,
           },

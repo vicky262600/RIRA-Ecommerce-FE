@@ -27,53 +27,53 @@ export const categories = [
     id: 1,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
     title: "SHIRT STYLE!",
-    cat: "women"
+    cat: "women",
   },
   {
     id: 2,
     img: "https://user-images.githubusercontent.com/75200810/236661206-abad8969-8630-4a36-bf13-70d8f83ef64f.png",
     title: "LOUNGEWEAR LOVE",
-    cat: "man"
+    cat: "man",
   },
   {
     id: 3,
     img: "https://user-images.githubusercontent.com/75200810/236661242-1108a421-6a14-48df-93c4-80708322cf70.png",
     title: "COOL CASUAL",
-    cat: "kids"
-  }
-]
+    cat: "kids",
+  },
+];
 
 export const popularProducts = [
   {
-    id:1,
+    id: 1,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
   },
   {
-    id:2,
+    id: 2,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
   },
   {
-    id:3,
+    id: 3,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
   },
   {
-    id:4,
+    id: 4,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
   },
   {
-    id:5,
+    id: 5,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
   },
   {
-    id:6,
+    id: 6,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
   },
   {
-    id:7,
+    id: 7,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
   },
   {
-    id:8,
+    id: 8,
     img: "https://user-images.githubusercontent.com/75200810/236661178-25096536-37b0-45c9-8c5e-a0b552117c70.png",
   },
-]
+];
